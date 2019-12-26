@@ -5,8 +5,8 @@
  */
 package com.mycompany.demo;
 
-import java.util.Date;
-
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  *
@@ -16,16 +16,8 @@ public class DemoTanpaSpring {
     
     public static void main(String[] args) {
 
-        Person asep = new Person();
-        asep.setNama("Asep Cahyana");
-        asep.setTanggalLahir(new Date());
-        
-        Address bandung = new Address();
-        bandung.setJalan("Jl. Raya Pangalengan");
-        bandung.setKota("Bandung");
-        bandung.setKodepos("12345");
-        
-        asep.setAlamat(bandung);
+        ApplicationContext context = new ClassPathXmlApplicationContext("classpath:ioc.xml");
+        Person asep = (Person) context.getBean("asep");
         
         System.out.println("Nama : " + asep.getNama());
         System.out.println("Alamat : " + asep.getAlamat().getJalan());
